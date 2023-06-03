@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Net.Http.Json;
+using Web.Models;
 
 namespace Web.ServiceClients;
 
@@ -14,10 +13,13 @@ public class DishesServiceClient : IDishesServiceClient
     }
 
     //TODO ajustar tipo para preço
-    public async Task<IActionResult> DishRegister(string name, string description, int price)
+    public async Task<IActionResult> DishRegister(DishRegister dishRegister)
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
-        HttpResponseMessage response = await httpClient.PostAsJsonAsync("/register", JsonConvert.SerializeObject(name));
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync<DishRegister>("/DishRegister/register", dishRegister);
+
+        if (response.IsSuccessStatusCode)
+            return null;
 
         return null;
     }

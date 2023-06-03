@@ -1,14 +1,36 @@
 ﻿@page
 @model WebApp.Pages.DishRegisterModel
 @{
-
     <h1>Cadastre o prato</h1>
 
     <form method="post">
-        <input type="text" name="Name" />
-        <input type="text" name="Description" />
-        <input type="number" name="Value" />
+        <div class="form-group" style="align-items:center">
+            <div class="col-md-2">
+                <section>Nome
+                    <input type="text" name="Name" />
+                </section>
+            </div>
+            <div class="col-md-3">
+                <section>Descrição/Detalhes
+                    <input type="text" name="Description" />
+                </section>
+            </div>
+            <div class="col-md-2">
+                <section>
+                    Valor
+                    <input type="number" name="Value" />
+                </section>
+            </div>
+            <button type="submit">Salvar </button>
+        </div>
 
-        <button type="submit">Salvar </button>
+        
     </form>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="green">
+            <p><strong>@TempData["Message"].ToString()</strong> </p>
+        </div>
+    }
 }

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "mnbOI4ot16yFdfcxxSuF3X93FWF+UBeRbQK0Cu72ecnFqnEN0ka/WKCviA2o9kvpW6JGaUhQSEa7+YXrzPBwgg==",
+  "dgSpecHash": "01FvE+s4QQEodP6a5aRvBpdidnoEhNxbvcOJgZ7dDvJKTUlcmV0zK4fXiV9nUbF1v0MTYq/aqjr1dYref4o7og==",
   "success": true,
   "projectFilePath": "C:\\PÓS\\projeto\\TechChallenge\\src\\Application\\Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\jessicam\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
+    "C:\\Users\\jessicam\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\jessicam\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

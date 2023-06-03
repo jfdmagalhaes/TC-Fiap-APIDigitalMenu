@@ -1,24 +1,30 @@
 ﻿using Application.UseCases.Dishes.Commands;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace WebApi.Controllers;
+
 [ApiController]
-public class DishRegisterController : Controller
+[Route("[controller]")]
+public class DishRegisterController : ControllerBase
 {
+    private readonly IMediator _mediator;
+
+    public DishRegisterController(IMediator mediator)
+    {
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+    }
     /// <summary>
     /// Register a new dish
     /// </summary>
     /// <param name="command"></param>
     [AllowAnonymous]
     [HttpPost("register")]
-    //[ProducesResponseType(StatusCodes.Status201Created)]
-    //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> RegisterAsync([FromBody] RegisterCommand command)
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<DishRegisterResponse> RegisterAsync([FromBody] DishRegisterCommand command, CancellationToken cancellationToken = default)
     {
-        var teste = command;
-        return null;
+        return await _mediator.Send(command, cancellationToken);
     }
 }
