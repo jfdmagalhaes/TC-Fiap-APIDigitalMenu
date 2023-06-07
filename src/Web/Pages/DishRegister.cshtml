@@ -3,28 +3,32 @@
 @{
     <h1>Cadastre o prato</h1>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="form-group" style="align-items:center">
             <div class="col-md-2">
                 <section>Nome
-                    <input type="text" name="Name" />
+                    <input type="text" asp-for="DishRegister.Name" />
                 </section>
             </div>
             <div class="col-md-3">
                 <section>Descrição/Detalhes
-                    <input type="text" name="Description" />
+                    <input type="text" asp-for="DishRegister.Description" />
                 </section>
             </div>
             <div class="col-md-2">
                 <section>
                     Valor
-                    <input type="number" name="Value" />
+                    <input type="number" asp-for="DishRegister.Value" />
                 </section>
             </div>
-            <button type="submit">Salvar </button>
+
+            <div>
+                <input type="file" asp-for="DishRegister.FileStream" />
+            </div>
+
         </div>
 
-        
+        <button type="submit">Salvar </button>
     </form>
 
     @if (TempData["Message"] != null)

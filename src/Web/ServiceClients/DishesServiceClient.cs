@@ -16,7 +16,21 @@ public class DishesServiceClient : IDishesServiceClient
     public async Task<IActionResult> DishRegister(DishRegister dishRegister)
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
-        HttpResponseMessage response = await httpClient.PostAsJsonAsync<DishRegister>("/DishRegister/register", dishRegister);
+
+        MultipartFormDataContent formData = new();
+
+        formData.Add(new StringContent(dishRegister.Name), "Name");
+        formData.Add(new StringContent(dishRegister.Description), "Description");
+        formData.Add(new StringContent(dishRegister.Value.ToString()), "Value");
+
+        var file = dishRegister.FileStream;
+        if (file != null)
+        {
+            var fileStreamContent = new StreamContent(file.OpenReadStream());
+            formData.Add(fileStreamContent, "FileStream", file.FileName);
+        }
+
+        HttpResponseMessage response = await httpClient.PostAsync("/DishRegister/register", formData);
 
         if (response.IsSuccessStatusCode)
             return null;

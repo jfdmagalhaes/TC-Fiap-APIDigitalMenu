@@ -23,7 +23,7 @@ public class DishRegisterController : ControllerBase
     [HttpPost("register")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<DishRegisterResponse> RegisterAsync([FromBody] DishRegisterCommand command, CancellationToken cancellationToken = default)
+    public async Task<DishRegisterResponse> RegisterAsync([FromForm] DishRegisterCommand command, CancellationToken cancellationToken = default)
     {
         return await _mediator.Send(command, cancellationToken);
     }

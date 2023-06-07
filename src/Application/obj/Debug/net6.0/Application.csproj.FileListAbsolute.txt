@@ -13,11 +13,14 @@ C:\PÓS\projeto\TechChallenge\Application\obj\Debug\net6.0\ref\Application.dll
 C:\PÓS\projeto\TechChallenge\src\Application\bin\Debug\net6.0\Application.deps.json
 C:\PÓS\projeto\TechChallenge\src\Application\bin\Debug\net6.0\Application.dll
 C:\PÓS\projeto\TechChallenge\src\Application\bin\Debug\net6.0\Application.pdb
+C:\PÓS\projeto\TechChallenge\src\Application\bin\Debug\net6.0\Domain.dll
+C:\PÓS\projeto\TechChallenge\src\Application\bin\Debug\net6.0\Domain.pdb
 C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\Application.csproj.AssemblyReference.cache
 C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\Application.GeneratedMSBuildEditorConfig.editorconfig
 C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\Application.AssemblyInfoInputs.cache
 C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\Application.AssemblyInfo.cs
 C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\Application.csproj.CoreCompileInputs.cache
+C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\Application.csproj.CopyComplete
 C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\Application.dll
 C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\refint\Application.dll
 C:\PÓS\projeto\TechChallenge\src\Application\obj\Debug\net6.0\Application.pdb

@@ -22,13 +22,14 @@ namespace WebApp.Pages
         {
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             var dishRegisterData = new DishRegister() 
             { 
                 Description = DishRegister.Description, 
                 Name = DishRegister.Name, 
-                Value = DishRegister.Value 
+                Value = DishRegister.Value ,
+                FileStream = DishRegister.FileStream               
             };
 
             var registerSucessfully = await _dishesServiceClient.DishRegister(dishRegisterData);
