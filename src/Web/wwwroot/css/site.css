@@ -15,4 +15,13 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
 }

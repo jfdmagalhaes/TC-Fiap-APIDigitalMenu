@@ -1,8 +1,37 @@
 ﻿.dr-header {
     background-color: black;
-    font-size: 1rem;
-    font-weight: 300;
-    margin-top: .5rem;
-    text-align: center;
-    text-transform: uppercase;
+    color: white;
+    font-family: Cambria;
+    display: relative;
+    /*margin-left: 1000px;*/
+    top: 0;
+    /*background-color: #cccccc;*/
+}
+
+.col-md-2 {
+    padding-bottom: 2em;
+    margin-left: 1000px;
+    width: 100%;
+}
+
+.img-header {
+    position: relative;
+    right: 300px;
+    float: left;
+}
+
+.form-group {
+    width: 100%;
+    height: 1000px;
+    right: 250px;
+    position: relative;
+    top: 50px;
+}
+
+.display-1 {
+    font-size: 40px;
+    color: white;
+    font-family: Cambria;
+    width: 100%;
+
 }

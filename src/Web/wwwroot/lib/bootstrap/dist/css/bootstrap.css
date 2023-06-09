@@ -519,11 +519,13 @@ progress {
   font-size: calc(1.475rem + 2.7vw);
   font-weight: 300;
   line-height: 1.2;
+  color: white
 }
 @media (min-width: 1200px) {
-  .display-4 {
-    font-size: 3.5rem;
-  }
+    .display-4 {
+        font-size: 3.5rem;
+        color: white
+    }
 }
 
 .display-5 {
@@ -623,11 +625,12 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
-  width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: auto;
-  margin-left: auto;
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+    background-color: black;
 }
 
 @media (min-width: 576px) {
@@ -4055,10 +4058,6 @@ textarea.form-control-lg {
 }
 
 @media (min-width: 576px) {
-  .navbar-expand-sm {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
   .navbar-expand-sm .navbar-nav {
     flex-direction: row;
   }
@@ -7785,7 +7784,7 @@ textarea.form-control-lg {
 
 .bg-white {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
+  background-color: black;
 }
 
 .bg-body {

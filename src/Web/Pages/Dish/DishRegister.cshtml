@@ -1,35 +1,54 @@
 ﻿@page
 @model Web.Pages.Dish.DishRegisterModel
 @{
-    <section class="dr-header"><h1>Cadastre o prato</h1></section>
 
-    <form method="post" enctype="multipart/form-data">
-        <div class="form-group" style="align-items:center">
-            <div class="col-md-2">
-                <section>Nome
-                    <input type="text" asp-for="DishRegister.Name" />
+    <link rel="stylesheet" href="~/css/dish/dish.css" asp-append-version="true" />
+    //<div class="complete-header">
+
+    <form method="post" enctype="multipart/form-data" style="align-items:center">
+
+        <section class="dr-header">
+            <div class="img-header">
+                <img src="~/images/celular-foto.png">
+            </div>  
+
+            <div class="form-group">
+            <h1 class="display-1">Cadastre o novo prato:</h1>
+                <div class="col-md-2">
+                    <section>Nome </section>
+                        <section> <input type="text" asp-for="DishRegister.Name" /> </section>
+                </div>
+
+                <div class="col-md-2">
+                    <section>Descrição/Detalhes</section>
+                    <section>
+                        <input type="text" asp-for="DishRegister.Description" />
+                    </section>
+                </div>
+
+                <div class="col-md-2">
+                    <section>
+                        Valor
+                    </section>
+                    <section>
+                        <input type="number" asp-for="DishRegister.Value" />
+                    </section>
+                </div>
+
+                <div>
+                    <section class="col-md-2">
+                        Selecione abaixo a imagem do seu prato:
+                        <div class="col-md-5"><input type="file" asp-for="DishRegister.FileStream" /></div>
+                    </section>
+                </div>
+
+                <section class="col-md-2">
+                    <button type="submit">Salvar </button>
                 </section>
             </div>
-            <div class="col-md-3">
-                <section>Descrição/Detalhes
-                    <input type="text" asp-for="DishRegister.Description" />
-                </section>
-            </div>
-            <div class="col-md-2">
-                <section>
-                    Valor
-                    <input type="number" asp-for="DishRegister.Value" />
-                </section>
-            </div>
-
-            <div>
-                <input type="file" asp-for="DishRegister.FileStream" />
-            </div>
-
-        </div>
-
-        <button type="submit">Salvar </button>
+        </section>
     </form>
+
 
     @if (TempData["Message"] != null)
     {
