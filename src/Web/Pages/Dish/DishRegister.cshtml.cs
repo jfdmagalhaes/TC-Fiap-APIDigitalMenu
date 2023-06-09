@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Xml.Linq;
 using Web.Models;
 using Web.ServiceClients;
 
-namespace WebApp.Pages
+namespace Web.Pages.Dish
 {
     public class DishRegisterModel : PageModel
     {
@@ -24,27 +23,27 @@ namespace WebApp.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var dishRegisterData = new DishRegister() 
-            { 
-                Description = DishRegister.Description, 
-                Name = DishRegister.Name, 
-                Value = DishRegister.Value ,
-                FileStream = DishRegister.FileStream               
+            var dishRegisterData = new DishRegister()
+            {
+                Description = DishRegister.Description,
+                Name = DishRegister.Name,
+                Value = DishRegister.Value,
+                FileStream = DishRegister.FileStream
             };
 
             var registerSucessfully = await _dishesServiceClient.DishRegister(dishRegisterData);
 
             var message = string.Empty;
 
-            if (registerSucessfully != null) 
+            if (registerSucessfully != null)
             {
-                message  = "O prato foi cadastrado com sucesso!";
+                message = "O prato foi cadastrado com sucesso!";
             }
             else
             {
                 message = "Ocorreu um erro no cadastro do seu prato!";
             }
-            
+
             TempData["Message"] = message;
 
             return RedirectToAction("DishRegister");

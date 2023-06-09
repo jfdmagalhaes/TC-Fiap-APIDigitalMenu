@@ -16,8 +16,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\PÓS\projeto\TechChallenge\src\Web
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/PÓS/projeto/TechChallenge/src/Web/Pages/DishRegister.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzaFJlZ2lzdGVyLmNzaHRtbA==
+[C:/PÓS/projeto/TechChallenge/src/Web/Pages/Dish/DishRegister.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzaFxEaXNoUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/PÓS/projeto/TechChallenge/src/Web/Pages/Error.cshtml]

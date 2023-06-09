@@ -25,16 +25,10 @@ public class DishRepository : IDishRepository
 
     public int AddDish(DishEntity dishRegister)
     {
-        //var connection = GetConnection();
-        //using (var cn = new SqlConnection(connection))
-        //{
+        var review = _context.Dishes.Add(dishRegister);
+        _context.CommitAsync();
 
-        //}
-
-        _context.Dishes.Add(dishRegister);
-
-        var teste = dishRegister;
-        throw new NotImplementedException();
+        return 1;
     }
 
     private bool disposedValue = false;

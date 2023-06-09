@@ -16,7 +16,9 @@ public static class DependencyInjection
         
         services.AddDbContext<IDishDbContext, DishDbContext>(opt =>
         {
-            opt.UseSqlServer(configuration.GetConnectionString("AppConnection"));
+            //opt.UseSqlServer(configuration.GetConnectionString("AppConnection"));
+            opt.UseSqlServer(configuration.GetConnectionString("AppConnection"), b =>
+                b.MigrationsAssembly(typeof(DishDbContext).Assembly.FullName));
         });
         return services;
     }

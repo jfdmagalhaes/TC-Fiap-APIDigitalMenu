@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Y5GEx4BaXBLtXieDkAzinAMjVxgISXLV4w3WfFPWvXw=",
+  "Hash": "lsqr5d18wvVcl0jOnKVP/ADlHxSjPnRyoXw0zgqLFVY=",
   "Source": "Web",
   "BasePath": "_content/Web",
   "Mode": "Default",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\PÓS\\projeto\\TechChallenge\\src\\Web\\wwwroot\\css\\dish\\dish.css",
+      "SourceId": "Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\PÓS\\projeto\\TechChallenge\\src\\Web\\wwwroot\\",
+      "BasePath": "_content/Web",
+      "RelativePath": "css/dish/dish.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\dish\\dish.css"
+    },
     {
       "Identity": "C:\\PÓS\\projeto\\TechChallenge\\src\\Web\\wwwroot\\css\\site.css",
       "SourceId": "Web",
