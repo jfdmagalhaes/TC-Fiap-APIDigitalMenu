@@ -9,7 +9,4 @@ public interface IDishDbContext : IUnitOfWork
 {
     IDbConnection Connection { get; }
     DbSet<DishEntity> Dishes { get; }
-
-    Task<bool> CommitAsync(CancellationToken cancellationToken = default);
-    IDbContextTransaction GetCurrentTransaction();
 }

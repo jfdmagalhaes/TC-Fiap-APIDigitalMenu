@@ -7,7 +7,7 @@ public class DishConfiguration : IEntityTypeConfiguration<DishEntity>
 {
     public void Configure(EntityTypeBuilder<DishEntity> builder)
     {
-        builder.ToTable("Dish");
+        builder.ToTable("dish");
         
         builder.Property(p => p.Id)
             .HasColumnName("Id")

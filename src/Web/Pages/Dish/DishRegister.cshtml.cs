@@ -31,13 +31,12 @@ namespace Web.Pages.Dish
                 FileStream = DishRegister.FileStream
             };
 
-            var registerSucessfully = await _dishesServiceClient.DishRegister(dishRegisterData);
+            var registerId = await _dishesServiceClient.DishRegister(dishRegisterData);
 
             var message = string.Empty;
-
-            if (registerSucessfully != null)
+            if (registerId != null)
             {
-                message = "O prato foi cadastrado com sucesso!";
+                message = $"O prato foi cadastrado com sucesso! {registerId} ";
             }
             else
             {
@@ -45,7 +44,6 @@ namespace Web.Pages.Dish
             }
 
             TempData["Message"] = message;
-
             return RedirectToAction("DishRegister");
         }
     }

@@ -6,7 +6,7 @@ using System.Data;
 using System.Reflection;
 
 namespace Infraestructure.EntityFramework.Context;
-public class DishDbContext : DbContext, IDishDbContext, IUnitOfWork
+public class DishDbContext : DbContext, IDishDbContext
 {
     public IDbConnection Connection => base.Database.GetDbConnection();
     private IDbContextTransaction _currentTransaction;
@@ -36,8 +36,8 @@ public class DishDbContext : DbContext, IDishDbContext, IUnitOfWork
         .EnableSensitiveDataLogging();
     }
 
-    public async Task<bool> CommitAsync(CancellationToken cancellationToken = default)
+    public async Task<bool> CommitAsync()
     {
-        return await base.SaveChangesAsync(cancellationToken) > 0;
+        return await base.SaveChangesAsync() > 0;
     }
 }

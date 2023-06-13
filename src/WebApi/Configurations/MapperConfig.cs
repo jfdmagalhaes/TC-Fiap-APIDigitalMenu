@@ -1,4 +1,4 @@
-﻿using Application.UseCases.Dishes.Commands;
+﻿using Application.UseCases.Dishes.Commands.Create;
 using AutoMapper;
 using Domain.Entities;
 

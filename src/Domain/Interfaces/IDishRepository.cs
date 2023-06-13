@@ -3,5 +3,6 @@
 namespace Domain.Interfaces;
 public interface IDishRepository : IRepository<DishEntity>
 {
-    int AddDish(DishEntity dishRegister);
+    Task AddDishAsync(DishEntity dishRegister);
+    Task<List<DishEntity>> GetAllDishesAsync();
 }

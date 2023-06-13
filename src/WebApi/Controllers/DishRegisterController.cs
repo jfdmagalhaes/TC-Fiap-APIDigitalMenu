@@ -1,4 +1,5 @@
-﻿using Application.UseCases.Dishes.Commands;
+﻿using Application.UseCases.Dishes.Commands.Create;
+using Application.UseCases.Dishes.Commands.Get;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,5 +27,19 @@ public class DishRegisterController : ControllerBase
     public async Task<DishRegisterResponse> RegisterAsync([FromForm] DishRegisterCommand command, CancellationToken cancellationToken = default)
     {
         return await _mediator.Send(command, cancellationToken);
+    }
+
+    /// <summary>
+    /// Get all records
+    /// </summary>
+    /// <param></param>
+    [AllowAnonymous]
+    [HttpGet("getAllDishes")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<GetDishesResponse> GetAllDishesAsync(CancellationToken cancellationToken = default)
+    {
+        return null;
+        //return await _mediator. Send();
     }
 }

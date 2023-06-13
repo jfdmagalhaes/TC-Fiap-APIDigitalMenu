@@ -1,7 +1,9 @@
-﻿using Domain.Entities;
+﻿using Dapper;
+using Domain.Entities;
 using Domain.Interfaces;
 using Infraestructure.EntityFramework.Context;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Infraestructure.Repositories;
@@ -18,21 +20,23 @@ public class DishRepository : IDishRepository
         _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
     }
 
+    //TODO acho que nem vou usar, pode ser removido
     public string GetConnection()
     {
         return _configuration.GetSection("ConnectionStrings").GetSection("AppConnection").Value!;
     }
 
-    public int AddDish(DishEntity dishRegister)
+    public async Task AddDishAsync(DishEntity dishRegister)
     {
-        var review = _context.Dishes.Add(dishRegister);
-        _context.CommitAsync();
-
-        return 1;
+       await _context.Dishes.AddAsync(dishRegister);
     }
 
+    public async Task<List<DishEntity>> GetAllDishesAsync()
+    {
+        return await _context.Dishes.ToListAsync();
+    }
+    
     private bool disposedValue = false;
-
 
     protected virtual void Dispose(bool disposing)
     {

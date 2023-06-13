@@ -13,7 +13,7 @@ public class DishesServiceClient : IDishesServiceClient
     }
 
     //TODO ajustar tipo para preço
-    public async Task<IActionResult> DishRegister(DishRegister dishRegister)
+    public async Task<string> DishRegister(DishRegister dishRegister)
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
 
@@ -30,10 +30,13 @@ public class DishesServiceClient : IDishesServiceClient
             formData.Add(fileStreamContent, "FileStream", file.FileName);
         }
 
-        HttpResponseMessage response = await httpClient.PostAsync("/DishRegister/register", formData);
+        var response = await httpClient.PostAsync("/DishRegister/register", formData);
+        response.EnsureSuccessStatusCode();
+
+        var contentResponse = response.Content.ReadAsStringAsync().Result;
 
         if (response.IsSuccessStatusCode)
-            return null;
+            return contentResponse;
 
         return null;
     }

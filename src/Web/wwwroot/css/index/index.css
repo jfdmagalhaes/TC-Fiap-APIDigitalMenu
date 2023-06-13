@@ -13,7 +13,7 @@
 
 .container {
     background-color: #D2691E;
-    color: white;
+    color: black;
     line-height: 3rem;
     position: relative;
     text-align: right;
@@ -68,7 +68,10 @@
     position: relative;
     display: inline-block;
     right: 0;
-    margin-right: 30px
+    margin-right: 30px;
+    font-family: Cambria;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .dropdown {
