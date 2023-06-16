@@ -11,11 +11,11 @@ namespace Web.Pages.Dish
 
         public DishRegisterModel(IDishesServiceClient dishesServiceClient)
         {
-            _dishesServiceClient = dishesServiceClient;
+            _dishesServiceClient = dishesServiceClient ?? throw new ArgumentNullException(nameof(dishesServiceClient));
         }
 
         [BindProperty]
-        public DishRegister DishRegister { get; set; }
+        public Models.Dish DishRegister { get; set; }
 
         public void OnGet()
         {
@@ -23,7 +23,7 @@ namespace Web.Pages.Dish
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var dishRegisterData = new DishRegister()
+            var dishRegisterData = new Models.Dish()
             {
                 Description = DishRegister.Description,
                 Name = DishRegister.Name,

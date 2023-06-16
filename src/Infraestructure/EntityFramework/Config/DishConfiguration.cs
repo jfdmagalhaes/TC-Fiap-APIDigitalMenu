@@ -14,8 +14,8 @@ public class DishConfiguration : IEntityTypeConfiguration<DishEntity>
             .UseIdentityColumn()
             .ValueGeneratedOnAdd();
 
-        builder.Property(p => p.Name).HasColumnName("name");
-        builder.Property(p => p.Description).HasColumnName("description");
+        builder.Property(p => p.Name).HasColumnName("name").HasMaxLength(60);
+        builder.Property(p => p.Description).HasColumnName("description").HasMaxLength(100);
         builder.Property(p => p.Value).HasColumnName("value");
 
         builder.HasKey(p => p.Id);

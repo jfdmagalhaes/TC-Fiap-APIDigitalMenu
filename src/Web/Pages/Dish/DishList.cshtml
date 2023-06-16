@@ -1,4 +1,8 @@
 ﻿@page
 @model Web.Pages.Dish.DishListModel
 @{
+
+    <form method="get">
+        <select asp-for="@Model.Dishes" class="esh-catalog-filter"></select>
+    </form>
 }

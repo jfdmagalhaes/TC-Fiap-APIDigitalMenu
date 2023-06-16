@@ -3,5 +3,5 @@
 namespace Application.UseCases.Dishes.Commands.Get;
 public class GetDishesResponse
 {
-    public List<DishEntity> Dishes { get; set; }
+    public List<DishEntity> Dishes { get; set; } = new();
 }

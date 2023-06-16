@@ -4,5 +4,6 @@ using Web.Models;
 namespace Web.ServiceClients;
 public interface IDishesServiceClient
 {
-    Task<string> DishRegister(DishRegister dishRegister);
+    Task<string> DishRegister(Dish dishRegister);
+    Task<List<Dish>> GetDishes();
 }

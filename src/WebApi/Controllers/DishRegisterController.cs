@@ -37,9 +37,8 @@ public class DishRegisterController : ControllerBase
     [HttpGet("getAllDishes")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<GetDishesResponse> GetAllDishesAsync(CancellationToken cancellationToken = default)
+    public async Task<GetDishesResponse> GetAllDishesAsync([FromQuery] GetDishesCommand command, CancellationToken cancellationToken = default)
     {
-        return null;
-        //return await _mediator. Send();
+        return await _mediator.Send(command, cancellationToken);
     }
 }
