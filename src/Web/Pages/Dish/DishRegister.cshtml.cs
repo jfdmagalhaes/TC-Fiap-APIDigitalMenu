@@ -15,7 +15,7 @@ namespace Web.Pages.Dish
         }
 
         [BindProperty]
-        public Models.Dish DishRegister { get; set; }
+        public Models.CreateDishViewModel DishRegister { get; set; }
 
         public void OnGet()
         {
@@ -23,12 +23,12 @@ namespace Web.Pages.Dish
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var dishRegisterData = new Models.Dish()
+            var dishRegisterData = new Models.CreateDishViewModel()
             {
                 Description = DishRegister.Description,
                 Name = DishRegister.Name,
-                Value = DishRegister.Value,
-                FileStream = DishRegister.FileStream
+                Price = DishRegister.Price,
+                FileForm = DishRegister.FileForm
             };
 
             var registerId = await _dishesServiceClient.DishRegister(dishRegisterData);

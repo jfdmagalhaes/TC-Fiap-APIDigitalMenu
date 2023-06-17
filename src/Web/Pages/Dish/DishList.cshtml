@@ -1,8 +1,31 @@
 ﻿@page
 @model Web.Pages.Dish.DishListModel
 @{
+    ViewData["Title"] = "Pratos Cadastrados";
+
+    <link rel="stylesheet" href="~/css/dish/dish.css" asp-append-version="true" />
 
     <form method="get">
-        <select asp-for="@Model.Dishes" class="esh-catalog-filter"></select>
+    <div class="form-group-list">
+       <h1 class="display-1">Pratos Cadastrados</h1>
+    
+        @if (Model.Dishes.Dishes.Any())
+        {
+            <div>
+                @foreach (var dish in Model.Dishes.Dishes)
+                {
+                    <div>
+                        <partial name="_DishViewModel" for="@dish" />
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div>
+                Ainda não existem pratos cadastrados!
+            </div>
+        }
+    </div>
     </form>
 }

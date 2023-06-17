@@ -1,6 +1,7 @@
 ﻿using Domain.Interfaces;
 using Infraestructure.EntityFramework.Context;
 using Infraestructure.Repositories;
+using Infraestructure.Repositories.AzureStorage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,8 @@ public static class DependencyInjection
         if (services is null) throw new ArgumentNullException(nameof(services));
 
         services.AddTransient<IDishRepository, DishRepository>();
-        
+        services.AddTransient<IAzureStorageRepository, AzureStorageRepository>();
+
         services.AddDbContext<IDishDbContext, DishDbContext>(opt =>
         {
             //opt.UseSqlServer(configuration.GetConnectionString("AppConnection"));

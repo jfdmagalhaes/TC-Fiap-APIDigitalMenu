@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Web.Models;
 using Web.ServiceClients;
 
 namespace Web.Pages.Dish
@@ -14,7 +15,7 @@ namespace Web.Pages.Dish
         }
 
         [BindProperty]
-        public List<Models.Dish> Dishes { get; set; } = new List<Models.Dish>();
+        public DishesViewModel Dishes { get; set; } = new();
 
         public async Task OnGet()
         {

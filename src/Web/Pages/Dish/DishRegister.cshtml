@@ -5,13 +5,12 @@
 
     <link rel="stylesheet" href="~/css/dish/dish.css" asp-append-version="true" />
 
-    <form method="post" enctype="multipart/form-data" style="align-items:center">
+    <form method="post" enctype="multipart/form-data">
+        <div class="img-header">
+            <img src="~/images/celular-foto.png" width="600" height="500">
+        </div>
 
-        <section class="dr-header">
-            <div class="img-header">
-                <img src="~/images/celular-foto.png">
-            </div>  
-
+        <section class="dr-header" margin-top:1px>
             <div class="form-group">
             <h1 class="display-1">Cadastre o novo prato:</h1>
                 <div class="col-md-2">
@@ -27,18 +26,16 @@
                 </div>
 
                 <div class="col-md-2">
+                    <section> Preço </section>
                     <section>
-                        Valor
-                    </section>
-                    <section>
-                        <input type="number" asp-for="DishRegister.Value" />
+                        <input type="number" step="any" asp-for="DishRegister.Price" />
                     </section>
                 </div>
 
                 <div>
                     <section class="col-md-2">
                         Selecione abaixo a imagem do seu prato:
-                        <div class="col-md-5"><input type="file" asp-for="DishRegister.FileStream" /></div>
+                        <div class="col-md-5"><input type="file" asp-for="DishRegister.FileForm" /></div>
                     </section>
                 </div>
 

@@ -6,6 +6,6 @@ public class DishRegisterCommand : IRequest<DishRegisterResponse>
 {
     public string Name { get; set; }
     public string Description { get; set; }
-    public double Value { get; set; }
-    public IFormFile FileStream { get; set; }
+    public double Price { get; set; }
+    public IFormFile FileForm { get; set; }
 }

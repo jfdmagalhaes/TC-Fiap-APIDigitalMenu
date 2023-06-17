@@ -9,7 +9,7 @@ namespace Infraestructure.EntityFramework.Context;
 public class DishDbContext : DbContext, IDishDbContext
 {
     public IDbConnection Connection => base.Database.GetDbConnection();
-    private IDbContextTransaction _currentTransaction;
+    private readonly IDbContextTransaction _currentTransaction;
     public IDbContextTransaction GetCurrentTransaction() => _currentTransaction;
 
     public DbSet<DishEntity> Dishes { get; set; }

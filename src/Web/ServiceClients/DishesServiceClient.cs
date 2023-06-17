@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Web.Models;
 
@@ -15,7 +14,7 @@ public class DishesServiceClient : IDishesServiceClient
     }
 
     //TODO ajustar tipo para preço
-    public async Task<string> DishRegister(Dish dishRegister)
+    public async Task<string> DishRegister(CreateDishViewModel dishRegister)
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
 
@@ -23,9 +22,9 @@ public class DishesServiceClient : IDishesServiceClient
 
         formData.Add(new StringContent(dishRegister.Name), "Name");
         formData.Add(new StringContent(dishRegister.Description), "Description");
-        formData.Add(new StringContent(dishRegister.Value.ToString()), "Value");
+        formData.Add(new StringContent(dishRegister.Price.ToString()), "Price");
 
-        var file = dishRegister.FileStream;
+        var file = dishRegister.FileForm;
         if (file != null)
         {
             var fileStreamContent = new StreamContent(file.OpenReadStream());
@@ -44,25 +43,20 @@ public class DishesServiceClient : IDishesServiceClient
     }
 
 
-    public async Task<List<Dish>> GetDishes()
+    public async Task<DishesViewModel> GetDishes()
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
 
         var response = await httpClient.GetAsync("/DishRegister/getAllDishes");
         response.EnsureSuccessStatusCode();
 
-        var contentResponse = response.Content.ReadAsStringAsync();
-
+        var allDishes = new DishesViewModel();
         if (response.IsSuccessStatusCode)
         {
             var stringData = await response.Content.ReadAsStringAsync();
-
-            var listinha = JsonConvert.DeserializeObject<List<DishEntity>>(stringData);
+            allDishes = JsonConvert.DeserializeObject<DishesViewModel>(stringData);
         }
 
-        //if (response.IsSuccessStatusCode)
-        //    return contentResponse;
-
-        return new List<Dish>();
+        return allDishes;
     }
 }

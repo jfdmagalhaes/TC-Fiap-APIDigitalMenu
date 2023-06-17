@@ -8,27 +8,36 @@ public class DishRegisterHandler : IRequestHandler<DishRegisterCommand, DishRegi
 {
     private readonly IDishRepository _dishRepository;
     private readonly IMapper _mapper;
+    private readonly IAzureStorageRepository _azureStorageRepository;
 
-    public DishRegisterHandler(IDishRepository dishRepository, IMapper mapper)
+    public DishRegisterHandler(
+        IDishRepository dishRepository, 
+        IMapper mapper,
+        IAzureStorageRepository azureStorageRepository)
     {
         _dishRepository = dishRepository ?? throw new ArgumentNullException(nameof(dishRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _azureStorageRepository = azureStorageRepository ?? throw new ArgumentNullException(nameof(azureStorageRepository));
     }
 
     public async Task<DishRegisterResponse> Handle(DishRegisterCommand request, CancellationToken cancellationToken)
     {
         try
         {
+            var responseUploadAttachment = new Domain.Dto.BlobResponseDto();
+
+            if (request.FileForm != null)
+                responseUploadAttachment = await _azureStorageRepository.UploadAsync(request.FileForm);
+
             var dish = _mapper.Map<DishEntity>(request);
+            dish.SetAnexo(responseUploadAttachment.Blob.FileName);
+
             await _dishRepository.AddDishAsync(dish);
             await _dishRepository.UnitOfWork.CommitAsync();
 
-            //TODO enviar o anexo para o blobStorage - implementar
-            //var fileStream = request.FileStream.OpenReadStream();
-
             return new DishRegisterResponse(dish.Id);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             throw;
         }
@@ -36,7 +45,11 @@ public class DishRegisterHandler : IRequestHandler<DishRegisterCommand, DishRegi
 
     private bool _disposedValue = false;
 
-    public void Dispose() => Dispose(true);
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+        Dispose(true);
+    }
 
     public void Dispose(bool disposing)
     {
