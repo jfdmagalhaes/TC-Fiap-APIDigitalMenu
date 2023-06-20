@@ -27,8 +27,8 @@ public class DishesServiceClient : IDishesServiceClient
         var file = dishRegister.FileForm;
         if (file != null)
         {
-            var fileStreamContent = new StreamContent(file.OpenReadStream());
-            formData.Add(fileStreamContent, "FileStream", file.FileName);
+            var fileFormContent = new StreamContent(file.OpenReadStream());
+            formData.Add(fileFormContent, "FileForm", file.FileName);
         }
 
         var response = await httpClient.PostAsync("/DishRegister/register", formData);

@@ -1,31 +1,56 @@
 ﻿@page
+@using static System.Net.Mime.MediaTypeNames;
 @model Web.Pages.Dish.DishListModel
 @{
     ViewData["Title"] = "Pratos Cadastrados";
 
     <link rel="stylesheet" href="~/css/dish/dish.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bootstrap-grid.css" asp-append-version="true" />
 
     <form method="get">
-    <div class="form-group-list">
-       <h1 class="display-1">Pratos Cadastrados</h1>
-    
-        @if (Model.Dishes.Dishes.Any())
-        {
-            <div>
-                @foreach (var dish in Model.Dishes.Dishes)
-                {
-                    <div>
-                        <partial name="_DishViewModel" for="@dish" />
-                    </div>
-                }
-            </div>
-        }
-        else
-        {
-            <div>
-                Ainda não existem pratos cadastrados!
-            </div>
-        }
-    </div>
+        <div class="form-group-list">
+            <h1 class="display-1">Pratos Cadastrados</h1>
+
+
+            @if (Model.Dishes.Dishes.Any())
+            {
+                <table class="table table-bordered">
+                    <tr class="table-list">
+                        <th>Nome </th>
+                        <th>Descrição </th>
+                        <th>Valor </th>
+                        <th>Imagem </th>
+
+                    </tr>
+
+                    @foreach (var dish in Model.Dishes.Dishes)
+                    {
+                        bool hasPicture = false;
+                        if (@dish.UriFile != null)
+                            hasPicture = true;
+
+
+                        <tr class="table-list-content">
+                            <td>@dish.Name</td>
+                            <td>@dish.Description</td>
+                            <td>@Html.Raw(@dish.Price.ToString("C2"))</td>
+                            @if (hasPicture)
+                            {
+                                <td class="modal-body">
+                                    <img src="@dish.UriFile" width="100" height="100" title="Clique para download da imagem" onclick="window.open('@dish.UriFile')" />
+                                </td>
+                            }
+
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div>
+                    Ainda não existem pratos cadastrados!
+                </div>
+            }
+        </div>
     </form>
 }
