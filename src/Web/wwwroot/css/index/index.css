@@ -82,6 +82,7 @@
     border-radius: 8px;
     top: 25px;
     right: 0;
+    z-index: 9;
 }
 
 .dropdown li + li {

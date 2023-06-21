@@ -69,6 +69,34 @@
     background-color: black;
 }
 
+.esh-catalog-items-without {
+    font-weight: bolder;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    background-color: black;
+    color: #fff;
+    padding: 0.6em 0.8em;
+    text-decoration: none;
+    -webkit-animation: esh-catalog-items-without .9s linear infinite;
+    -moz-animation: esh-catalog-items-without .9s linear infinite;
+    -o-animation: esh-catalog-items-without .9s linear infinite;
+    animation: esh-catalog-items-without .9s linear infinite;
+}
+
+@keyframes esh-catalog-items-without {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .esh-catalog-item {
   margin-bottom: 1.5rem;
   text-align: center;
