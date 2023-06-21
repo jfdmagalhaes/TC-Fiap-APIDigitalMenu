@@ -30,7 +30,7 @@ public class DishRegisterHandler : IRequestHandler<DishRegisterCommand, DishRegi
                 responseUploadAttachment = await _azureStorageRepository.UploadAsync(request.FileForm);
 
             var dish = _mapper.Map<DishEntity>(request);
-            dish.SetAnexo(responseUploadAttachment.Blob.FileName);
+            dish.SetAttachmentName(responseUploadAttachment.Blob.FileName);
 
             await _dishRepository.AddDishAsync(dish);
             await _dishRepository.UnitOfWork.CommitAsync();

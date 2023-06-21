@@ -42,47 +42,6 @@
     color: white;
 }
 
-#menu {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0;
-    padding: 0;
-    float: left;
-    display: inline-block;
-    list-style-type: none;
-}
-
-    #menu > li {
-        float: left; /**/
-        display: inline;
-        list-style: none;
-        padding-left: 15px;
-        clear: both; /**/
-        height: 2em; /**/
-        list-style-type: none;
-        display: inline;
-    }
-
-        #menu > li > a {
-            float: left;
-            display: inline-block;
-            background: none;
-            color: #999;
-            text-decoration: none;
-            line-height: 3; /**/
-            text-transform: uppercase; /**/
-        }
-
-ul#menu > li > a:hover {
-    color: #333;
-    text-decoration: none;
-}
-
-/*Contextual Positional*/
-ul#menu > li.sub_menu {
-    position: relative;
-}
-
 ul li {
     display: inline-block;
 }

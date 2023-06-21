@@ -1,0 +1,29 @@
+﻿@page
+@model Web.Pages.Index1Model
+@{
+    ViewData["Title"] = "Catalog";
+}
+<link rel="stylesheet" href="~/css/catalog/catalog.component.css" asp-append-version="true" />
+
+<div class="container">
+    @if (Model.Dishes.Dishes.Any())
+    {
+        //<partial name="_pagination" for="CatalogModel.PaginationInfo" />
+
+        <div class="esh-catalog-items row">
+            @foreach (var catalogItem in Model.Dishes.Dishes)
+            {
+                <div class="esh-catalog-item col-md-4">
+                    <partial name="_product" for="@catalogItem" />
+                </div>
+            }
+        </div>
+        //<partial name="_pagination" for="CatalogModel.PaginationInfo" />
+    }
+    else
+    {
+        <div class="esh-catalog-items row">
+            THERE ARE NO RESULTS THAT MATCH YOUR SEARCH
+        </div>
+    }
+</div>
