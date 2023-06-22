@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.UseCases.Dishes.Commands.Get;
+namespace Application.UseCases.Dishes.Commands.Dishes.Get;
 public class GetDishesResponse
 {
     public List<DishResponse> Dishes { get; set; } = new();

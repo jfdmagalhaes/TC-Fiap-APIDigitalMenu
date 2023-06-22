@@ -1,8 +1,6 @@
-﻿using Dapper;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Interfaces;
 using Infraestructure.EntityFramework.Context;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -35,7 +33,12 @@ public class DishRepository : IDishRepository
     {
         return await _context.Dishes.ToListAsync();
     }
-    
+
+    public void UpdateDish(DishEntity dishRegister)
+    {
+        _context.Dishes.Update(dishRegister);
+    }
+
     private bool disposedValue = false;
 
     protected virtual void Dispose(bool disposing)

@@ -17,7 +17,7 @@ public class DishConfiguration : IEntityTypeConfiguration<DishEntity>
         builder.Property(p => p.Name).HasColumnName("name").HasMaxLength(60);
         builder.Property(p => p.Description).HasColumnName("description").HasMaxLength(100);
         builder.Property(p => p.Price).HasColumnName("price");
-        builder.Property(p => p.Anexo).HasColumnName("anexo");
+        builder.Property(p => p.AttachmentName).HasColumnName("attachmentname");
 
         builder.HasKey(p => p.Id);
     }

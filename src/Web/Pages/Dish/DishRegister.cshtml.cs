@@ -15,15 +15,11 @@ namespace Web.Pages.Dish
         }
 
         [BindProperty]
-        public Models.CreateDishViewModel DishRegister { get; set; }
-
-        public void OnGet()
-        {
-        }
+        public Models.DishRegisterViewModel DishRegister { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var dishRegisterData = new Models.CreateDishViewModel()
+            var dishRegisterData = new Models.DishRegisterViewModel()
             {
                 Description = DishRegister.Description,
                 Name = DishRegister.Name,

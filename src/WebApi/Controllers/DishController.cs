@@ -1,5 +1,6 @@
-﻿using Application.UseCases.Dishes.Commands.Create;
-using Application.UseCases.Dishes.Commands.Get;
+﻿using Application.UseCases.Dishes.Commands.Dishes.Create;
+using Application.UseCases.Dishes.Commands.Dishes.Edit;
+using Application.UseCases.Dishes.Commands.Dishes.Get;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,11 +9,11 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class DishRegisterController : ControllerBase
+public class DishController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public DishRegisterController(IMediator mediator)
+    public DishController(IMediator mediator)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
@@ -38,6 +39,19 @@ public class DishRegisterController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<GetDishesResponse> GetAllDishesAsync([FromQuery] GetDishesCommand command, CancellationToken cancellationToken = default)
+    {
+        return await _mediator.Send(command, cancellationToken);
+    }
+
+    /// <summary>
+    /// Edit an existing dish
+    /// </summary>
+    /// <param></param>
+    [AllowAnonymous]
+    [HttpPut("dishEdit")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<DishEditResponse> DishEditAsync([FromQuery] DishEditCommand command, CancellationToken cancellationToken = default)
     {
         return await _mediator.Send(command, cancellationToken);
     }

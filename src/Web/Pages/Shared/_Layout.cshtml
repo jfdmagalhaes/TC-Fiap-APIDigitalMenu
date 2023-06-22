@@ -14,26 +14,42 @@
     <header>
         <nav class="navbar">
             <!-- LOGO -->
-            <img class="logo-image" src="~/images/cardapio.png">
-            <div class="logo">MyMenu</div>
+            <a asp-area="" asp-page="/Index">
+                <img class="logo-image" src="~/images/cardapio.png">
+                <div class="logo">MyMenu</div>
+            </a>
 
             <!-- NAVIGATION MENU -->
             <div class="nav-links">
 
+                @{
+                    bool isAdmin = true;
+                } 
                 <!-- USING CHECKBOX HACK -->
-                <div class="menu">
-                   <div class="services">Serviços
-                    <img class="esh-identity-image" src="~/images/arrow-down.png">
+                @if (isAdmin)//(User.IsInRole("Administrators"))
+                {
 
-                        <!-- DROPDOWN MENU -->
-                        <ul class="dropdown">
-                            <li><a class="nav-link" asp-area="" asp-page="/Index">Página Inicial</a></li>
-                            <li><a class="nav-link" asp-area="" asp-page="/Dish/DishRegister">Cadastre o prato</a></li>
-                            <li><a class="nav-link" asp-area="" asp-page="/Dish/DishList">Pratos Cadastrados </a></li>
-                        </ul>
-                   </div>
-                </div>
-                </div>               
+                    <div class="menu">
+                        <div class="services">
+                            Serviços
+                            <img class="esh-identity-image" src="~/images/arrow-down.png">
+
+                            <!-- DROPDOWN MENU -->
+                            <ul class="dropdown">
+                                <li><a class="nav-link" asp-area="" asp-page="/Index">Página Inicial</a></li>
+                                <li><a class="nav-link" asp-area="" asp-page="/Dish/DishRegister">Cadastre o prato</a></li>
+                                <li><a class="nav-link" asp-area="" asp-page="/Dish/DishList">Pratos Cadastrados </a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                } else
+                {
+                    <li><a class="nav-link" asp-area="" asp-page="/Login/Login"> Login Adm </a></li>
+                }
+
+                
+            </div>
         </nav>
 
     </header>

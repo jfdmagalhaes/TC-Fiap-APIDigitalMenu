@@ -7,10 +7,10 @@ public class DishEntity : IAggregateRoot
     public string Name { get; init; }
     public string Description { get; init; }
     public double Price { get; init; }
-    public string Anexo { get; private set; }
+    public string AttachmentName { get; private set; }
 
-    public void SetAnexo (string fileName)
+    public void SetAttachmentName (string fileName)
     {
-        Anexo = fileName;
+        AttachmentName = fileName;
     }
 }

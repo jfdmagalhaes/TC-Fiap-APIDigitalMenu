@@ -16,11 +16,11 @@
             {
                 <table class="table table-bordered">
                     <tr class="table-list">
+                        <th>Ações</th>
                         <th>Nome </th>
                         <th>Descrição </th>
                         <th>Valor </th>
                         <th>Imagem </th>
-
                     </tr>
 
                     @foreach (var dish in Model.Dishes.Dishes)
@@ -31,6 +31,16 @@
 
 
                         <tr class="table-list-content">
+
+                            <td>
+                                <a asp-area="" asp-page="/Dish/DishEdit">
+                                    <img class="" title="Editar" width="25" height="25" src="~/images/edit-icon.png">
+                                </a>
+
+                                <a asp-area="" asp-page="/Dish/DishDelete">
+                                    <img class="" title="Deletar" width="25" height="25" src="~/images/delete-icon.png">
+                                </a>
+                            </td>
                             <td>@dish.Name</td>
                             <td>@dish.Description</td>
                             <td>@Html.Raw(@dish.Price.ToString("C2"))</td>
@@ -40,7 +50,6 @@
                                     <img src="@dish.UriFile" width="100" height="100" title="Clique para download da imagem" onclick="window.open('@dish.UriFile')" />
                                 </td>
                             }
-
                         </tr>
                     }
                 </table>

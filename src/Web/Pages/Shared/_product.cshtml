@@ -1,0 +1,21 @@
+﻿@using Web.Models;
+@model DishData
+
+<form asp-page="/Basket/Index" method="post">
+    <img class="esh-catalog-thumbnail" src="@Model.UriFile" />
+    <div class="esh-catalog-name">
+        <span>@Model.Name</span>
+    </div>
+    <div class="esh-catalog-description">
+        <span>@Model.Description</span>
+    </div>
+    <div class="esh-catalog-price">
+        <span>@Model.Price.ToString("N2")</span>
+    </div>
+    <input class="esh-catalog-button" type="submit" value=" SELECIONAR " />
+
+    <input type="hidden" asp-for="@Model.Id" name="id" />
+    <input type="hidden" asp-for="@Model.Name" name="name" />
+    <input type="hidden" asp-for="@Model.UriFile" name="pictureUri" />
+    <input type="hidden" asp-for="@Model.Price" name="price" />
+</form>

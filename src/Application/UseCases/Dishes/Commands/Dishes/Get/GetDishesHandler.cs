@@ -1,7 +1,7 @@
 ﻿using Domain.Interfaces;
 using MediatR;
 
-namespace Application.UseCases.Dishes.Commands.Get;
+namespace Application.UseCases.Dishes.Commands.Dishes.Get;
 public class GetDishesHandler : IRequestHandler<GetDishesCommand, GetDishesResponse>
 {
     private readonly IDishRepository _dishRepository;
@@ -28,9 +28,9 @@ public class GetDishesHandler : IRequestHandler<GetDishesCommand, GetDishesRespo
                 Price = dish.Price
             };
 
-            if (dish.Anexo != null)
+            if (dish.AttachmentName != null)
             {
-                var fileData = await _azureStorageRepository.DownloadAsync(dish.Anexo);
+                var fileData = await _azureStorageRepository.DownloadAsync(dish.AttachmentName);
                 response.UriFile = fileData.Uri;
             }
 

@@ -13,8 +13,7 @@ public class DishesServiceClient : IDishesServiceClient
         _httpClientFactory = httpClientFactory;
     }
 
-    //TODO ajustar tipo para preço
-    public async Task<string> DishRegister(CreateDishViewModel dishRegister)
+    public async Task<string> DishRegister(DishRegisterViewModel dishRegister)
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
 
@@ -31,7 +30,7 @@ public class DishesServiceClient : IDishesServiceClient
             formData.Add(fileFormContent, "FileForm", file.FileName);
         }
 
-        var response = await httpClient.PostAsync("/DishRegister/register", formData);
+        var response = await httpClient.PostAsync("/Dish/register", formData);
         response.EnsureSuccessStatusCode();
 
         var contentResponse = response.Content.ReadAsStringAsync().Result;
@@ -47,7 +46,7 @@ public class DishesServiceClient : IDishesServiceClient
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
 
-        var response = await httpClient.GetAsync("/DishRegister/getAllDishes");
+        var response = await httpClient.GetAsync("/Dish/getAllDishes");
         response.EnsureSuccessStatusCode();
 
         var allDishes = new DishesViewModel();
@@ -58,5 +57,33 @@ public class DishesServiceClient : IDishesServiceClient
         }
 
         return allDishes;
+    }
+
+    public async Task<bool> DishEdit(DishEditViewModel dishEdit)
+    {
+        var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
+
+        MultipartFormDataContent formData = new();
+
+        formData.Add(new StringContent(dishEdit.Name), "Name");
+        formData.Add(new StringContent(dishEdit.Description), "Description");
+        formData.Add(new StringContent(dishEdit.Price.ToString()), "Price");
+
+        var file = dishEdit.FileForm;
+        if (file != null)
+        {
+            var fileFormContent = new StreamContent(file.OpenReadStream());
+            formData.Add(fileFormContent, "FileForm", file.FileName);
+        }
+
+        var response = await httpClient.PostAsync("/Dish/dishEdit", formData);
+        response.EnsureSuccessStatusCode();
+
+        var contentResponse = response.Content.ReadAsStringAsync().Result;
+
+        //if (response.IsSuccessStatusCode)
+        //    return contentResponse;
+
+        return true;
     }
 }
