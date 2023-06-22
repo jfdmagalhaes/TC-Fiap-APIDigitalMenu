@@ -1,17 +1,18 @@
-﻿using AutoMapper;
+﻿using Application.UseCases.Dishes.Commands.Dishes.Create;
+using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
 using MediatR;
 
-namespace Application.UseCases.Dishes.Commands.Create;
-public class DishRegisterHandler : IRequestHandler<DishRegisterCommand, DishRegisterResponse>, IDisposable
+namespace Application.UseCases.Dishes.Commands.Dishes.Edit;
+public class DishEditHandler : IRequestHandler<DishEditCommand, DishEditResponse>, IDisposable
 {
     private readonly IDishRepository _dishRepository;
     private readonly IMapper _mapper;
     private readonly IAzureStorageRepository _azureStorageRepository;
 
-    public DishRegisterHandler(
-        IDishRepository dishRepository, 
+    public DishEditHandler(
+        IDishRepository dishRepository,
         IMapper mapper,
         IAzureStorageRepository azureStorageRepository)
     {
@@ -20,7 +21,7 @@ public class DishRegisterHandler : IRequestHandler<DishRegisterCommand, DishRegi
         _azureStorageRepository = azureStorageRepository ?? throw new ArgumentNullException(nameof(azureStorageRepository));
     }
 
-    public async Task<DishRegisterResponse> Handle(DishRegisterCommand request, CancellationToken cancellationToken)
+    public async Task<DishEditResponse> Handle(DishEditCommand request, CancellationToken cancellationToken)
     {
         try
         {
@@ -32,14 +33,14 @@ public class DishRegisterHandler : IRequestHandler<DishRegisterCommand, DishRegi
             var dish = _mapper.Map<DishEntity>(request);
             dish.SetAttachmentName(responseUploadAttachment.Blob.FileName);
 
-            await _dishRepository.AddDishAsync(dish);
+            _dishRepository.UpdateDish(dish);
             await _dishRepository.UnitOfWork.CommitAsync();
 
-            return new DishRegisterResponse(dish.Id);
+            return new DishEditResponse { Success = true };
         }
         catch (Exception)
         {
-            throw;
+            return new DishEditResponse { Success = false };
         }
     }
 

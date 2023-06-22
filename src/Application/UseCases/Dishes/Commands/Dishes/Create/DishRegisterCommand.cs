@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.UseCases.Dishes.Commands.Create;
+namespace Application.UseCases.Dishes.Commands.Dishes.Create;
 public class DishRegisterCommand : IRequest<DishRegisterResponse>
 {
     public string Name { get; set; }

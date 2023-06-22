@@ -1,6 +1,6 @@
 ﻿namespace Web.Models;
 
-public class CreateDishViewModel
+public class DishRegisterViewModel
 {
     public string Name { get; set; }
     public string Description { get; set; }

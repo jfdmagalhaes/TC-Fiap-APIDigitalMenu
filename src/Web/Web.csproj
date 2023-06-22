@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Login\" />
+  </ItemGroup>
+
 </Project>

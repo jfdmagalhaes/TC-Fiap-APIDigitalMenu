@@ -17,7 +17,7 @@ namespace Web.Pages.Dish
         [BindProperty]
         public DishesViewModel Dishes { get; set; } = new();
 
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             Dishes = await _dishesServiceClient.GetDishes();
         }

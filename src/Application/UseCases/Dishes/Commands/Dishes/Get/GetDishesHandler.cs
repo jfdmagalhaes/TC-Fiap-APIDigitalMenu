@@ -1,7 +1,7 @@
 ﻿using Domain.Interfaces;
 using MediatR;
 
-namespace Application.UseCases.Dishes.Commands.Get;
+namespace Application.UseCases.Dishes.Commands.Dishes.Get;
 public class GetDishesHandler : IRequestHandler<GetDishesCommand, GetDishesResponse>
 {
     private readonly IDishRepository _dishRepository;

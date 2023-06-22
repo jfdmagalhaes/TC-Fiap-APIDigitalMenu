@@ -1,13 +1,29 @@
 ﻿@page
-@model IndexModel
+@model Web.Pages.Dish.DishListModel
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Catalog";
 }
-<link rel="stylesheet" href="~/css/index/index.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/catalog/catalog.component.css" asp-append-version="true" />
 
-<div class="text-center">
-    <h1 class="display-4">Cardápio Digital</h1>
-    <p class="display-3">
-        Bem vindo ao sistema de cardápio digital. Clique em <a asp-area="" asp-page="/Dish/DishRegister">Cadastre o prato</a>, para registrar as opções do seu restaurante.
-    </p>
+<div class="container">
+    @if (Model.Dishes.Dishes.Any())
+    {
+        //<partial name="_pagination" for="CatalogModel.PaginationInfo" />
+
+        <div class="esh-catalog-items row">
+            @foreach (var catalogItem in Model.Dishes.Dishes)
+            {
+                <div class="esh-catalog-item col-md-4">
+                    <partial name="_product" for="@catalogItem" />
+                </div>
+            }
+        </div>
+        //<partial name="_pagination" for="CatalogModel.PaginationInfo" />
+    }
+    else
+    {
+        <div class="esh-catalog-items-without row">
+            NÃO EXISTEM PRATOS DISPONÍVEIS. CHAME O GARÇOM!!
+        </div>
+    }
 </div>
