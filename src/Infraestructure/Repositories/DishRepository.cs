@@ -34,6 +34,11 @@ public class DishRepository : IDishRepository
         return await _context.Dishes.ToListAsync();
     }
 
+    public async Task<DishEntity> GetDishByIdAsync(int id)
+    {
+        return await _context.Dishes.Where(x => x.Id == id).FirstAsync();
+    }
+
     public void UpdateDish(DishEntity dishRegister)
     {
         _context.Dishes.Update(dishRegister);

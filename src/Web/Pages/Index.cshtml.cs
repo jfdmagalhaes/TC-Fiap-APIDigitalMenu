@@ -19,6 +19,6 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        Dishes = await _dishesServiceClient.GetDishes();
+        Dishes = await _dishesServiceClient.GetAllDishes();
     }
 }

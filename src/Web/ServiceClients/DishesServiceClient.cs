@@ -42,7 +42,7 @@ public class DishesServiceClient : IDishesServiceClient
     }
 
 
-    public async Task<DishesViewModel> GetDishes()
+    public async Task<DishesViewModel> GetAllDishes()
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
 
@@ -57,6 +57,23 @@ public class DishesServiceClient : IDishesServiceClient
         }
 
         return allDishes;
+    }
+
+    public async Task<DishData> GetDishById(int id)
+    {
+        var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
+
+        var response = await httpClient.GetAsync($"/Dish/getDishById?Id={id}");
+        response.EnsureSuccessStatusCode();
+
+        var dishFounded = new DishData();
+        if (response.IsSuccessStatusCode)
+        {
+            var stringData = await response.Content.ReadAsStringAsync();
+            dishFounded = JsonConvert.DeserializeObject<DishData>(stringData);
+        }
+
+        return dishFounded;
     }
 
     public async Task<bool> DishEdit(DishEditViewModel dishEdit)

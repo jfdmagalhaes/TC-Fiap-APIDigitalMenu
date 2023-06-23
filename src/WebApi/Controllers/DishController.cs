@@ -44,6 +44,19 @@ public class DishController : ControllerBase
     }
 
     /// <summary>
+    /// Get all records
+    /// </summary>
+    /// <param></param>
+    [AllowAnonymous]
+    [HttpGet("getDishById")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<GetDishByIdResponse> GetDishByIdAsync ([FromQuery] GetDishByIdCommand command, CancellationToken cancellationToken = default)
+    {
+        return await _mediator.Send(command, cancellationToken);
+    }
+
+    /// <summary>
     /// Edit an existing dish
     /// </summary>
     /// <param></param>

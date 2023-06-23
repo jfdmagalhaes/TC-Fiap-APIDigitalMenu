@@ -60,3 +60,10 @@ ul li {
 .modal-body {
     cursor: pointer;
 }
+
+.de-header {
+    background-color: black;
+    color: white;
+    font-family: Cambria;
+    display: relative;
+}

@@ -33,8 +33,10 @@
                         <tr class="table-list-content">
 
                             <td>
-                                <a asp-area="" asp-page="/Dish/DishEdit">
-                                    <img class="" title="Editar" width="25" height="25" src="~/images/edit-icon.png">
+                                <a asp-area="" asp-page="/Dish/DishEdit" asp-route-ID="@dish.Id" asp>
+
+                                    <img class=""
+                                         title="Editar" width="25" height="25" src="~/images/edit-icon.png">
                                 </a>
 
                                 <a asp-area="" asp-page="/Dish/DishDelete">

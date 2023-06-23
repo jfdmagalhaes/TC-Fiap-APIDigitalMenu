@@ -19,7 +19,7 @@ namespace Web.Pages.Dish
 
         public async Task OnGetAsync()
         {
-            Dishes = await _dishesServiceClient.GetDishes();
+            Dishes = await _dishesServiceClient.GetAllDishes();
         }
     }
 }

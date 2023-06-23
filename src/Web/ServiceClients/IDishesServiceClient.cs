@@ -5,6 +5,7 @@ namespace Web.ServiceClients;
 public interface IDishesServiceClient
 {
     Task<string> DishRegister(DishRegisterViewModel dishRegister);
-    Task<DishesViewModel> GetDishes();
+    Task<DishesViewModel> GetAllDishes();
+    Task<DishData> GetDishById(int id);
     Task<bool> DishEdit(DishEditViewModel dishEdit);
 }

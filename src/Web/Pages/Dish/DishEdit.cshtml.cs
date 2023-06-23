@@ -16,6 +16,18 @@ namespace Web.Pages.Dish
         [BindProperty]
         public Models.DishEditViewModel DishEdit { get; set; }
 
+        public async Task<IActionResult> OnGet(int id)
+        {
+            var dish = await _dishesServiceClient.GetDishById(id);
+
+            DishEdit.Description = dish.Description;
+            DishEdit.Price = dish.Price;
+            DishEdit.Name = dish.Name;
+
+            return null;
+        }
+
+
         public async Task<IActionResult> OnPostAsync()
         {
             var dishEditModel = new Models.DishEditViewModel()
@@ -40,7 +52,7 @@ namespace Web.Pages.Dish
             }
 
             TempData["Message"] = message;
-            return RedirectToAction("DishRegister");
+            return RedirectToAction("DishList");
         }
     }
 }
