@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="UseCases\Dishes\Commands\Dishes\Delete\" />
     <Folder Include="UseCases\Dishes\Commands\Users\" />
   </ItemGroup>
 

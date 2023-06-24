@@ -64,7 +64,20 @@ public class DishController : ControllerBase
     [HttpPut("dishEdit")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<DishEditResponse> DishEditAsync([FromQuery] DishEditCommand command, CancellationToken cancellationToken = default)
+    public async Task<DishEditResponse> DishEditAsync([FromForm] DishEditCommand command, CancellationToken cancellationToken = default)
+    {
+        return await _mediator.Send(command, cancellationToken);
+    }
+
+    /// <summary>
+    /// Delete an existing dish
+    /// </summary>
+    /// <param></param>
+    [AllowAnonymous]
+    [HttpDelete("dishDelete")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<DishEditResponse> DishDeleteAsync([FromQuery] DishEditCommand command, CancellationToken cancellationToken = default)
     {
         return await _mediator.Send(command, cancellationToken);
     }

@@ -59,18 +59,18 @@ public class DishesServiceClient : IDishesServiceClient
         return allDishes;
     }
 
-    public async Task<DishData> GetDishById(int id)
+    public async Task<DishEditViewModel> GetDishById(int id)
     {
         var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
 
         var response = await httpClient.GetAsync($"/Dish/getDishById?Id={id}");
         response.EnsureSuccessStatusCode();
 
-        var dishFounded = new DishData();
+        var dishFounded = new DishEditViewModel();
         if (response.IsSuccessStatusCode)
         {
             var stringData = await response.Content.ReadAsStringAsync();
-            dishFounded = JsonConvert.DeserializeObject<DishData>(stringData);
+            dishFounded = JsonConvert.DeserializeObject<DishEditViewModel>(stringData);
         }
 
         return dishFounded;
@@ -85,6 +85,7 @@ public class DishesServiceClient : IDishesServiceClient
         formData.Add(new StringContent(dishEdit.Name), "Name");
         formData.Add(new StringContent(dishEdit.Description), "Description");
         formData.Add(new StringContent(dishEdit.Price.ToString()), "Price");
+        formData.Add(new StringContent(dishEdit.Id.ToString()), "Id");
 
         var file = dishEdit.FileForm;
         if (file != null)
@@ -93,7 +94,7 @@ public class DishesServiceClient : IDishesServiceClient
             formData.Add(fileFormContent, "FileForm", file.FileName);
         }
 
-        var response = await httpClient.PostAsync("/Dish/dishEdit", formData);
+        var response = await httpClient.PutAsync("/Dish/dishEdit", formData);
         response.EnsureSuccessStatusCode();
 
         var contentResponse = response.Content.ReadAsStringAsync().Result;

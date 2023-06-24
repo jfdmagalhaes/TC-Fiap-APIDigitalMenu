@@ -36,12 +36,18 @@ public class DishRepository : IDishRepository
 
     public async Task<DishEntity> GetDishByIdAsync(int id)
     {
-        return await _context.Dishes.Where(x => x.Id == id).FirstAsync();
+        return await _context.Dishes.Where(x => x.Id == id).AsNoTracking().FirstAsync();
     }
 
     public void UpdateDish(DishEntity dishRegister)
     {
         _context.Dishes.Update(dishRegister);
+    }
+
+    public void DeleteDish(int id)
+    {
+        var dish = _context.Dishes.SingleOrDefault(x => x.Id.Equals(id));
+        if (dish != null) _context.Dishes.Remove(dish);
     }
 
     private bool disposedValue = false;

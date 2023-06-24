@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="~/css/dish/dish.css" asp-append-version="true" />
 
     <form method="post" enctype="multipart/form-data" asp-action="edit">
-
+    <input hidden asp-for="@Model.DishEdit.Id"/>
         <section class="de-header" margin-top:1px>
             <div class="form-group-edit">
                 <h1 class="display-1">Edição de prato </h1>
@@ -37,7 +37,9 @@
                 </div>
 
                 <section class="col-md-2">
-                    <button type="submit">Salvar </button>
+                    <button type="submit" class="btn btn-primary">Salvar </button>
+                    <a asp-page="/Dish/DishList" class="btn btn-primary">Cancelar </a>
+
                 </section>
             </div>
         </section>

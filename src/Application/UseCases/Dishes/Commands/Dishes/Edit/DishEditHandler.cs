@@ -25,15 +25,28 @@ public class DishEditHandler : IRequestHandler<DishEditCommand, DishEditResponse
     {
         try
         {
+            var getDish = await _dishRepository.GetDishByIdAsync(request.Id);
+            var dishEntity = new DishEntity
+            {
+                Name = request.Name ?? getDish.Name,
+                Description = request.Description ?? getDish.Description,
+                Price = request.Price == 0 ? getDish.Price : request.Price,
+                Id = request.Id,
+            };
+
             var responseUploadAttachment = new Domain.Dto.BlobResponseDto();
 
             if (request.FileForm != null)
+            {
                 responseUploadAttachment = await _azureStorageRepository.UploadAsync(request.FileForm);
+                dishEntity.SetAttachmentName(responseUploadAttachment.Blob.FileName);
+            }
+            else
+            {
+                dishEntity.SetAttachmentName(getDish.AttachmentName);
+            }
 
-            var dish = _mapper.Map<DishEntity>(request);
-            dish.SetAttachmentName(responseUploadAttachment.Blob.FileName);
-
-            _dishRepository.UpdateDish(dish);
+            _dishRepository.UpdateDish(dishEntity);
             await _dishRepository.UnitOfWork.CommitAsync();
 
             return new DishEditResponse { Success = true };
