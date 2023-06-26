@@ -4,7 +4,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using MediatR;
 
-namespace Application.UseCases.Dishes.Commands.Dishes.Edit;
+namespace Application.UseCases.Dishes.Commands.Dishes.Update;
 public class DishEditHandler : IRequestHandler<DishEditCommand, DishEditResponse>, IDisposable
 {
     private readonly IDishRepository _dishRepository;

@@ -21,5 +21,11 @@ namespace Web.Pages.Dish
         {
             Dishes = await _dishesServiceClient.GetAllDishes();
         }
+
+        public async Task<IActionResult> OnGetDelete(int id)
+        {
+            await _dishesServiceClient.DishDelete(id);
+            return RedirectToAction("DishList");
+        }
     }
 }

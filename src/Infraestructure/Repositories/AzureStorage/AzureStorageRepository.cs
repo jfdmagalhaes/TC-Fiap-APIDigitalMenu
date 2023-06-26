@@ -22,9 +22,27 @@ public class AzureStorageRepository : IAzureStorageRepository
         _logger = logger;
     }
 
-    public Task<BlobResponseDto> DeleteAsync(string blobFilename)
+    public async Task<BlobResponseDto> DeleteAsync(string blobFilename)
     {
-        throw new NotImplementedException();
+        BlobContainerClient client = new BlobContainerClient(_storageConnectionString, _storageContainerName);
+
+        BlobClient file = client.GetBlobClient(blobFilename);
+
+        try
+        {
+            // Delete the file
+            await file.DeleteAsync();
+        }
+        catch (RequestFailedException ex)
+            when (ex.ErrorCode == BlobErrorCode.BlobNotFound)
+        {
+            // File did not exist, log to console and return new response to requesting method
+            _logger.LogError($"File {blobFilename} was not found.");
+            return new BlobResponseDto { Error = true, Status = $"File with name {blobFilename} not found." };
+        }
+
+        // Return a new BlobResponseDto to the requesting method
+        return new BlobResponseDto { Error = false, Status = $"File: {blobFilename} has been successfully deleted." };
     }
 
     public async Task<BlobDto> DownloadAsync(string blobFilename)

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Web.Models;
 
 namespace Web.ServiceClients;
@@ -40,7 +39,6 @@ public class DishesServiceClient : IDishesServiceClient
 
         return null;
     }
-
 
     public async Task<DishesViewModel> GetAllDishes()
     {
@@ -95,13 +93,21 @@ public class DishesServiceClient : IDishesServiceClient
         }
 
         var response = await httpClient.PutAsync("/Dish/dishEdit", formData);
-        response.EnsureSuccessStatusCode();
+        if (response.IsSuccessStatusCode) 
+            return true;
 
-        var contentResponse = response.Content.ReadAsStringAsync().Result;
+        return false;
+    }
 
-        //if (response.IsSuccessStatusCode)
-        //    return contentResponse;
+    public async Task<bool> DishDelete(int id)
+    {
+        var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
 
-        return true;
+        var response = await httpClient.DeleteAsync($"/Dish/dishDelete?Id={id}");
+
+        if (response.IsSuccessStatusCode)
+            return true;
+
+        return false;
     }
 }

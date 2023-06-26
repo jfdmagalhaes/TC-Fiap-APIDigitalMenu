@@ -1,7 +1,7 @@
 ﻿@using Web.Models;
 @model DishData
 
-<form asp-page="/Basket/Index" method="post">
+<form asp-page="/Dish/DishOrder" method="post">
     <img class="esh-catalog-thumbnail" src="@Model.UriFile" />
     <div class="esh-catalog-name">
         <span>@Model.Name</span>
@@ -16,6 +16,8 @@
 
     <input type="hidden" asp-for="@Model.Id" name="id" />
     <input type="hidden" asp-for="@Model.Name" name="name" />
-    <input type="hidden" asp-for="@Model.UriFile" name="pictureUri" />
+    <input type="hidden" asp-for="@Model.UriFile" name="urifile" />
     <input type="hidden" asp-for="@Model.Price" name="price" />
+    <input type="hidden" asp-for="@Model.Description" name="description" />
+
 </form>

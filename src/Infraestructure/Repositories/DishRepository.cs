@@ -44,10 +44,9 @@ public class DishRepository : IDishRepository
         _context.Dishes.Update(dishRegister);
     }
 
-    public void DeleteDish(int id)
+    public void DeleteDish(DishEntity dish)
     {
-        var dish = _context.Dishes.SingleOrDefault(x => x.Id.Equals(id));
-        if (dish != null) _context.Dishes.Remove(dish);
+        _context.Dishes.Remove(dish);
     }
 
     private bool disposedValue = false;

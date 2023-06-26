@@ -1,6 +1,7 @@
 ﻿using Application.UseCases.Dishes.Commands.Dishes.Create;
-using Application.UseCases.Dishes.Commands.Dishes.Edit;
+using Application.UseCases.Dishes.Commands.Dishes.Delete;
 using Application.UseCases.Dishes.Commands.Dishes.Get;
+using Application.UseCases.Dishes.Commands.Dishes.Update;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -77,7 +78,7 @@ public class DishController : ControllerBase
     [HttpDelete("dishDelete")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<DishEditResponse> DishDeleteAsync([FromQuery] DishEditCommand command, CancellationToken cancellationToken = default)
+    public async Task<DishDeleteResponse> DishDeleteAsync([FromQuery] DishDeleteCommand command, CancellationToken cancellationToken = default)
     {
         return await _mediator.Send(command, cancellationToken);
     }
