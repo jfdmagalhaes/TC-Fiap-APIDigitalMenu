@@ -4,7 +4,9 @@ DigitalMenu é um projeto de estudo para a fase 1 da pós graduação da FIAP (A
 A aplicação web é utilizada para Front End, enquanto a Web API faz a interação com o banco de dados.
 Foi utilizado o SQL Azure como banco de dados e o Azure Blob Storage foi utilizado para armazenamento das imagens/anexo cadastradas com a aplicação.
 
-O serviço em si, inclui uma página onde serão realizados os cadastros de 'pratos', com a opção para inclusão da imagem. Outra página irá realizar a busca dos dados cadastrados no SQL Azure, bem como exibição da imagem (caso exista) armazenada no blob storage.
+O serviço em si, inclui uma página onde serão realizados os cadastros de 'pratos', com a opção para inclusão da imagem. Outra página irá realizar a busca dos dados cadastrados no SQL Azure, bem como exibição da imagem (caso exista) armazenada no blob storage, onde também será possível remover e editar. (Essa será visão proprietário do estabelecimento - após implementação de autenticação de usuário, será visualizado apenas pelo adm)
+
+Foi feito um escopo inicial de adição de pratos no carrinho e página inicial onde é visualizado o catálogo de pratos cadastrados (Essa será a unica visão do cliente geral do estabelecimento - após implementação de autenticação de usuário)
 
 ## Usage
 
