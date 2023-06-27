@@ -9,4 +9,7 @@ public interface IDishesServiceClient
     Task<DishEditViewModel> GetDishById(int id);
     Task<bool> DishEdit(DishEditViewModel dishEdit);
     Task<bool> DishDelete(int id);
+    Task<bool> AddCartAsync(DishEditViewModel dish);
+    Task<DishCartViewModel> GetAllDishesCart();
+    Task<bool> DeleteAllDishesCart();
 }

@@ -1,4 +1,7 @@
-﻿using Application.UseCases.Dishes.Commands.Dishes.Create;
+﻿using Application.UseCases.Dishes.Commands.DishCart.Create;
+using Application.UseCases.Dishes.Commands.DishCart.Delete;
+using Application.UseCases.Dishes.Commands.DishCart.Get;
+using Application.UseCases.Dishes.Commands.Dishes.Create;
 using Application.UseCases.Dishes.Commands.Dishes.Delete;
 using Application.UseCases.Dishes.Commands.Dishes.Get;
 using Application.UseCases.Dishes.Commands.Dishes.Update;
@@ -79,6 +82,45 @@ public class DishController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<DishDeleteResponse> DishDeleteAsync([FromQuery] DishDeleteCommand command, CancellationToken cancellationToken = default)
+    {
+        return await _mediator.Send(command, cancellationToken);
+    }
+
+    /// <summary>
+    /// Added a item on cart
+    /// </summary>
+    /// <param></param>
+    [AllowAnonymous]
+    [HttpPost("addItemOnCart")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<DishCartResponse> AddItemOnCartAsync([FromForm] DishCartCommand command, CancellationToken cancellationToken = default)
+    {
+        return await _mediator.Send(command, cancellationToken);
+    }
+
+    /// <summary>
+    /// Get all records
+    /// </summary>
+    /// <param></param>
+    [AllowAnonymous]
+    [HttpGet("getAllDishesCart")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<GetAllDishesCartResponse> GetAllDishesCartAsync([FromQuery] GetAllDishesCartCommand command, CancellationToken cancellationToken = default)
+    {
+        return await _mediator.Send(command, cancellationToken);
+    }
+
+    /// <summary>
+    /// Delete all dishes on cart
+    /// </summary>
+    /// <param></param>
+    [AllowAnonymous]
+    [HttpDelete("dishCartDelete")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<DishCartDeleteResponse> DishCartDeleteAsync([FromQuery] DishCartDeleteCommand command, CancellationToken cancellationToken = default)
     {
         return await _mediator.Send(command, cancellationToken);
     }

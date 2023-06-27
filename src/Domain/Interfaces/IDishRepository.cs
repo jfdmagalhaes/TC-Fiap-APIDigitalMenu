@@ -8,4 +8,7 @@ public interface IDishRepository : IRepository<DishEntity>
     Task<DishEntity> GetDishByIdAsync(int id);
     void UpdateDish(DishEntity dishRegister);
     void DeleteDish(DishEntity dish);
+    Task AddDishCart(DishCartEntity dishCart);
+    Task<List<DishCartEntity>> GetAllDishesCartAsync();
+    void DeleteAllDishesCart(List<DishCartEntity> dishesCart);
 }

@@ -110,4 +110,51 @@ public class DishesServiceClient : IDishesServiceClient
 
         return false;
     }
+
+    public async Task<bool> AddCartAsync(DishEditViewModel dish)
+    {
+        var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
+
+        MultipartFormDataContent formData = new();
+
+        formData.Add(new StringContent(dish.Id.ToString()), "DishId");
+        formData.Add(new StringContent(dish.Price.ToString()), "Price");
+
+        var response = await httpClient.PostAsync("/Dish/addItemOnCart", formData);
+        response.EnsureSuccessStatusCode();
+
+        if (response.IsSuccessStatusCode)
+            return true;
+
+        return false;
+    }
+
+    public async Task<DishCartViewModel> GetAllDishesCart()
+    {
+        var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
+
+        var response = await httpClient.GetAsync("/Dish/getAllDishesCart");
+        response.EnsureSuccessStatusCode();
+
+        var allDishes = new DishCartViewModel();
+        if (response.IsSuccessStatusCode)
+        {
+            var stringData = await response.Content.ReadAsStringAsync();
+            allDishes = JsonConvert.DeserializeObject<DishCartViewModel>(stringData);
+        }
+
+        return allDishes;
+    }
+
+    public async Task<bool> DeleteAllDishesCart()
+    {
+        var httpClient = _httpClientFactory.CreateClient("DishesServiceClient");
+
+        var response = await httpClient.DeleteAsync($"/Dish/dishCartDelete");
+
+        if (response.IsSuccessStatusCode)
+            return true;
+
+        return false;
+    }
 }

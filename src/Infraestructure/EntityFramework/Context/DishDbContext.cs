@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
@@ -13,6 +12,7 @@ public class DishDbContext : DbContext, IDishDbContext
     public IDbContextTransaction GetCurrentTransaction() => _currentTransaction;
 
     public DbSet<DishEntity> Dishes { get; set; }
+    public DbSet<DishCartEntity> DishesCart { get; set; }
 
 
     public DishDbContext(DbContextOptions<DishDbContext> options)

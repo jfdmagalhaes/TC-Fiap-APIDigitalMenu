@@ -49,6 +49,22 @@ public class DishRepository : IDishRepository
         _context.Dishes.Remove(dish);
     }
 
+    public async Task AddDishCart(DishCartEntity dishCart)
+    {
+       await _context.DishesCart.AddAsync(dishCart);
+    }
+
+    public async Task<List<DishCartEntity>> GetAllDishesCartAsync()
+    {
+        return await _context.DishesCart.ToListAsync();
+    }
+
+    public void DeleteAllDishesCart(List<DishCartEntity> dishesCart)
+    {
+        _context.DishesCart.RemoveRange(dishesCart);
+        
+    }
+
     private bool disposedValue = false;
 
     protected virtual void Dispose(bool disposing)

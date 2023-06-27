@@ -157,3 +157,16 @@
 }
   .esh-catalog-price::before {
     content: '$'; }
+
+.esh-basket-title{
+    color: white;
+    background-color: black;
+    left: 1000px;
+    text-align: left;
+}
+.esh-catalog-items {
+    color: white;
+    background-color: black;
+    left: 1000px;
+    text-align: left;
+}
